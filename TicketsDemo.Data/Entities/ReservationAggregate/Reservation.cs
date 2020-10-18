@@ -12,6 +12,8 @@ namespace TicketsDemo.Data.Entities
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public int PlaceInRunId { get; set; }
+        public PlaceInRun PlaceInRun { get; set; }
         public int? TicketId { get; set; }
+        public Ticket Ticket { get; set; }
     }
 }

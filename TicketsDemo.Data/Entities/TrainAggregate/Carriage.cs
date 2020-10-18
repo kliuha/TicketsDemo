@@ -13,7 +13,7 @@ namespace TicketsDemo.Data.Entities
         public int Id { get; set; }
         public CarriageType Type { get; set; }
         public decimal DefaultPrice { get; set; }
-        public List<Place> Places { get; set; }
+        public virtual List<Place> Places { get; set; }
         public int TrainId { get; set; }
         public Train Train { get; set; }
 

@@ -37,8 +37,8 @@ namespace TicketsDemo.EF.Repositories
         public Ticket Get(int id) {
             using (var ctx = new TicketsContext())
             {
-                return ctx.Tickets
-                    .Include("PriceComponents").Where(r => r.Id == id).Single();
+                return ctx.Tickets.Include("PriceComponents").Where(r => r.ReservationId == id).Single();
+                //.Include("PriceComponents").Where(r => r.Id == id).Single();
             }
         }
     }

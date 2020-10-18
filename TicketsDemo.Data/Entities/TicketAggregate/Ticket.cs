@@ -10,11 +10,13 @@ namespace TicketsDemo.Data.Entities
 
     public class Ticket
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public TicketStatusEnum Status { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
         public int ReservationId { get; set; }
+        public Reservation Reservation { get; set; }
         public List<PriceComponent> PriceComponents { get; set; }
         public DateTime CreatedDate { get; set; }
     }

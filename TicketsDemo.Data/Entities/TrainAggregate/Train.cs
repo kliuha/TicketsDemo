@@ -12,6 +12,7 @@ namespace TicketsDemo.Data.Entities
         public int Number { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
-        public List<Carriage> Carriages { get; set; }
+        public virtual List<Carriage> Carriages { get; set; }
+        public virtual List<Run> Runs { get; set; }
     }
 }

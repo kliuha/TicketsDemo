@@ -13,5 +13,6 @@ namespace TicketsDemo.Data.Entities
         public int CarriageNumber { get; set; }
         public int RunId { get; set; }
         public Run Run { get; set; }
+        public List<Reservation> Reservations { get; set; }
     }
 }
