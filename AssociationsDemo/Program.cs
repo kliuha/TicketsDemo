@@ -18,10 +18,12 @@ namespace AssociationsDemo
             //OneToManyAddReference.ByAddingToCollectionEagerLoading();
 
             //AccessNavigationPropertiesInLoop.ListPlacesForAllTrainsLazyLoading();
-            //AccessNavigationPropertiesInLoop.ListPlacesForAllTrainsEagerLoading();
-            //AccessNavigationPropertiesInLoop.ListPlacesForAllTrainsLazyLostContext();
+            // AccessNavigationPropertiesInLoop.ListPlacesForAllTrainsEagerLoading();
 
-            //SelectSpecializedDataSet.GetAllReservationsWithTicketsForTrain(1, DateTime.Now.AddDays(-7), DateTime.Now);
+            //AccessNavigationPropertiesInLoop.ListPlacesForAllTrainsLazyLostContext();
+            //ChangeTrackerSamples.ChangeAndRevertTrainNumberSample();
+
+            SelectSpecializedDataSet.GetAllReservationsWithTicketsForTrain(1, DateTime.Now.AddDays(-7), DateTime.Now);
         }
     }
 }

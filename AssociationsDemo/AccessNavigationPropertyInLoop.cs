@@ -59,7 +59,7 @@ namespace AssociationsDemo
                 trains = ctx.Trains.ToList();
             }
 
-            trains.ForEach(InspectTrain);
+            trains.ForEach(x => AccessNavigationPropertiesInLoop.InspectTrain(x));
         }
 
         private static void InspectTrain(Train train) {

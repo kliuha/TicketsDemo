@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessNavigationPropertyInLoop.cs" />
+    <Compile Include="ChangeTrackerSamples.cs" />
     <Compile Include="OneToManyAddReference.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
