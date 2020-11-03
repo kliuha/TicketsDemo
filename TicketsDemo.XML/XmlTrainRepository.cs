@@ -14,11 +14,15 @@ namespace TicketsDemo.XML
 {
     public class XmlTrainRepository : ITrainRepository
     {
+        XMLSettingsService xml_set = new XMLSettingsService();
         public List<Train> GetAllTrains()
         {
+            
+      
+            
             var serializer = new XmlSerializer(typeof(List<Train>));
             List<Train> trains;
-            using (FileStream fs = new FileStream(GetXmlPath(), FileMode.Open))
+            using (FileStream fs = new FileStream(xml_set.PlacesXMLPath, FileMode.Open))
             {
                 trains = (List<Train>)serializer.Deserialize(fs);
             }
@@ -43,7 +47,7 @@ namespace TicketsDemo.XML
         public void CreateTrain(Train train)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Train));
-            using (FileStream fs = new FileStream(GetXmlPath(), FileMode.Append))
+            using (FileStream fs = new FileStream(xml_set.PlacesXMLPath, FileMode.Append))
             {
                 serializer.Serialize(fs, train);
             }
@@ -59,7 +63,7 @@ namespace TicketsDemo.XML
         }
         public void DeleteTrain(Train train)
         {
-            XDocument xDoc = XDocument.Load(GetXmlPath());
+            XDocument xDoc = XDocument.Load(xml_set.PlacesXMLPath);
             foreach (XElement xelem in xDoc.Root.Elements("Train"))
             {
                 if (xelem.Element("Id").Value == train.Id.ToString())
@@ -67,21 +71,18 @@ namespace TicketsDemo.XML
                     xelem.Remove();
                 }
             }
-            xDoc.Save(GetXmlPath());
+            xDoc.Save(xml_set.PlacesXMLPath);
         }
 
         public void SerializeListOfTrain(List<Train> trains)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Train>));
-            using (FileStream fs = new FileStream(GetXmlPath(), FileMode.Create))
+            using (FileStream fs = new FileStream(xml_set.PlacesXMLPath, FileMode.Create))
             {
                 serializer.Serialize(fs, trains);
             }
         }
 
-        public string GetXmlPath()
-        {
-            return "D:\\tickets\\TicketsDemo\\TicketsDemo.XML\\XMLRepositoryPlaces.xml";
-        }
+       
     }
 }

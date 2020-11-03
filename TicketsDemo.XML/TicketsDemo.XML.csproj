@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HolidayRepository.cs" />
+    <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLSettingsService.cs" />
     <Compile Include="XmlTrainRepository.cs" />
     <Compile Include="XMLWorker.cs" />
   </ItemGroup>

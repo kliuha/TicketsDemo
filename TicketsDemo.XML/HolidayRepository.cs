@@ -14,12 +14,13 @@ namespace TicketsDemo.XML
 {
     public class HolidayRepository : IHolidayRepository
     {
+        XMLSettingsService xml_set = new XMLSettingsService();
         public List<Holiday> GetHolidaysList()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Holiday>));
             List<Holiday> holidays;
 
-            using (FileStream fs = new FileStream(GetXmlPath(), FileMode.Open))
+            using (FileStream fs = new FileStream(xml_set.HolidaysXMLPath, FileMode.Open))
             {
                 holidays = (List<Holiday>)serializer.Deserialize(fs);
             }
@@ -29,7 +30,7 @@ namespace TicketsDemo.XML
         public void CreateHoliday(Holiday holiday)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Holiday));
-            using (FileStream fs = new FileStream(GetXmlPath(), FileMode.Append))
+            using (FileStream fs = new FileStream(xml_set.HolidaysXMLPath, FileMode.Append))
             {
                 serializer.Serialize(fs, holiday);
             }
@@ -37,9 +38,6 @@ namespace TicketsDemo.XML
 
        
 
-        public string GetXmlPath()
-        {
-            return "D:\\tickets\\TicketsDemo\\TicketsDemo.XML\\XmlHolidayRepository.xml";
-        }
+       
     }
 }

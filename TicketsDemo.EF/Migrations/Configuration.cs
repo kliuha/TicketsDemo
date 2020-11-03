@@ -42,7 +42,7 @@ namespace TicketsDemo.EF.Migrations
               {
                   Number = 90,
                   StartLocation = "Kiev",
-                  EndLocation = "Odessa",
+                  EndLocation = "Chop",
                   Carriages = new List<Carriage>() { 
                       new Carriage() { 
                           Places = placeGenerator(),
@@ -71,7 +71,7 @@ namespace TicketsDemo.EF.Migrations
               {
                   Number = 720,
                   StartLocation = "Kiev",
-                  EndLocation = "Vinnitsa",
+                  EndLocation = "Mariupol",
                   Carriages = new List<Carriage>() { 
                       new Carriage() { 
                           Places = placeGenerator(),

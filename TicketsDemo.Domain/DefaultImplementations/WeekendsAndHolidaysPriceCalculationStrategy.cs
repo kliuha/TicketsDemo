@@ -31,7 +31,7 @@ namespace TicketsDemo.Domain.DefaultImplementations
                     var HolidayComponent = new PriceComponent()
                     {
                         Name = $"Holiday service tax for {holiday.Name}",
-                        Value = 10000m
+                        Value = 10m
                     };
                     components.Add(HolidayComponent);
                     return components;
@@ -42,7 +42,7 @@ namespace TicketsDemo.Domain.DefaultImplementations
                 var WeekendComponent = new PriceComponent()
                 {
                     Name = "Weekend service tax",
-                    Value = 5000m
+                    Value = 50m
                 };
                 components.Add(WeekendComponent);
             }

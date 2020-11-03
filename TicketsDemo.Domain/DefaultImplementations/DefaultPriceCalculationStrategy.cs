@@ -32,19 +32,12 @@ namespace TicketsDemo.Domain.DefaultImplementations.PriceCalculationStrategy
                         car.Number == placeInRun.CarriageNumber))
                     .SingleOrDefault(x => x != null);
 
-            var placeComponent = new PriceComponent() { Name = "Main price" };
+            var placeComponent = new PriceComponent() { Name = "Price" };
             placeComponent.Value = place.Carriage.DefaultPrice * place.PriceMultiplier;
             components.Add(placeComponent);
 
 
-            if (placeComponent.Value > 30) {
-                var cashDeskComponent = new PriceComponent()
-                {
-                    Name = "Cash desk service tax",
-                    Value = placeComponent.Value * 0.2m
-                };
-                components.Add(cashDeskComponent);
-            }
+           
 
             return components;
         }

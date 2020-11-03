@@ -11,9 +11,11 @@ namespace TicketsDemo.XML
 {
     class XMLWorker
     {
+       
+        XMLSettingsService xml_set = new XMLSettingsService();
         public void Writer()
         {
-            XDocument xDoc = XDocument.Load("D:\\tickets\\TicketsDemo\\TicketsDemo.XML\\XMLRepository.xml");
+            XDocument xDoc = XDocument.Load(xml_set.RepXMLPath);
             // создаем новый элемент train
             XElement train1 = new XElement("train");
             // создаем элементы
@@ -36,7 +38,7 @@ namespace TicketsDemo.XML
             // добавляем корневой элемент в документ
             xDoc.Add(traines);
 
-            xDoc.Save("D:\\tickets\\TicketsDemo\\TicketsDemo.XML\\XMLRepository.xml");
+            xDoc.Save(xml_set.RepXMLPath);
        
         }
 
