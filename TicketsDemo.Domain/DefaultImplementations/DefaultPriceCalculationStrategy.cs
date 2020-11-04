@@ -34,11 +34,7 @@ namespace TicketsDemo.Domain.DefaultImplementations.PriceCalculationStrategy
 
             var placeComponent = new PriceComponent() { Name = "Price" };
             placeComponent.Value = place.Carriage.DefaultPrice * place.PriceMultiplier;
-            components.Add(placeComponent);
-
-
-           
-
+            components.Add(placeComponent);         
             return components;
         }
     }

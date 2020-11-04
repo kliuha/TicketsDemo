@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using TicketsDemo.Data.Entities;
+using TicketsDemo.XML.Interfaces;
 
 namespace TicketsDemo.XML
 {
     class XMLWorker
     {
-       
-        XMLSettingsService xml_set = new XMLSettingsService();
+
+
+        private ISettingsService SettingsService;
+        public XMLWorker(ISettingsService Repository)
+        {
+            SettingsService = Repository;
+        }
         public void Writer()
         {
-            XDocument xDoc = XDocument.Load(xml_set.RepXMLPath);
+            XDocument xDoc = XDocument.Load(SettingsService.RepXMLPath);
             // создаем новый элемент train
             XElement train1 = new XElement("train");
             // создаем элементы
@@ -37,21 +43,18 @@ namespace TicketsDemo.XML
             //traines.Add(galaxys5);
             // добавляем корневой элемент в документ
             xDoc.Add(traines);
-
-            xDoc.Save(xml_set.RepXMLPath);
+            xDoc.Save(SettingsService.RepXMLPath);
        
         }
 
         Train GenerateTrain(int trainID, string startLocationName, string destiny, int firstCarriageId) {
             Train train = new Train();
             Random random = new Random();
-
             train.Id = trainID;
             train.StartLocation = startLocationName;
             train.EndLocation = destiny;
             train.Number = random.Next(100, 200);
             train.Carriages = GenerateCarriageList(train, firstCarriageId);
-
             return train;
         }
 

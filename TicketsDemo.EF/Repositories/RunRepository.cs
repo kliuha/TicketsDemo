@@ -51,8 +51,7 @@ namespace TicketsDemo.EF.Repositories
         {
             using (var ctx = new TicketsContext())
             {
-                return ctx.Runs.Include("Places")
-                    .Where(r => r.Id == runId).Single();
+                return ctx.Runs.Include(nameof(Carriage.Places)).Where(r => r.Id == runId).Single();
             }
         }
         public PlaceInRun GetPlaceInRun(int placeInRunId) {

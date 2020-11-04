@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketsDemo.XML.Interfaces;
 
 namespace TicketsDemo.XML
 {
-    class XMLSettingsService
+   public class XMLSettingsService : ISettingsService
     {
-        
-        public string HolidaysXMLPath
+
+        public string HolidaysXMLPath 
         {
             get
             {

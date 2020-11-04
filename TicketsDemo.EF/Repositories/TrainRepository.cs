@@ -24,7 +24,7 @@ namespace TicketsDemo.EF.Repositories
         {
             using (var ctx = new TicketsContext())
             {
-                return ctx.Trains.Include("Carriages").Include("Carriages.Places").First(x => x.Id == id);
+                return ctx.Trains.Include((nameof(Train.Carriages))).Include(nameof(Carriage.Places)).First(x => x.Id == id);
             }
         }
 

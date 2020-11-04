@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketsDemo.XML.Interfaces
 {
-    interface ISettingsService
+   public interface ISettingsService
     {
         string HolidaysXMLPath { get; }
         string PlacesXMLPath { get; }

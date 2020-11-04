@@ -15,6 +15,7 @@ namespace TicketsDemo.App_Start
     using TicketsDemo.Domain.Interfaces;
     using TicketsDemo.EF.Repositories;
     using TicketsDemo.XML;
+    using TicketsDemo.XML.Interfaces;
 
     public static class NinjectWebCommon 
     {
@@ -77,25 +78,22 @@ namespace TicketsDemo.App_Start
             kernel.Bind<ITicketService>().To<TicketService>();
             kernel.Bind<IReservationService>().To<ReservationService>();
 
+            kernel.Bind<ISettingsService>().To<XMLSettingsService>();
+
             ///todo factory
             //kernel.Bind<IPriceCalculationStrategy>().To<FinalPriceCalculationStrategy>();
 
             //kernel.Bind<WeekendsAndHolidaysPriceCalculationStrategy>().ToSelf();
-            kernel.Bind<IPriceCalculationStrategy>().ToMethod(x =>
+            kernel.Bind<IPriceCalculationStrategy>().ToMethod(ctx =>
             {
-                List<IPriceCalculationStrategy> priceCalculationStrategies = new List<IPriceCalculationStrategy>()
-                {
-                    new DefaultPriceCalculationStrategy(x.Kernel.Get<IRunRepository>(), x.Kernel.Get<ITrainRepository>()),
-                    new WeekendsAndHolidaysPriceCalculationStrategy(x.Kernel.Get<IHolidayRepository>())
-                };
-                
-                return new FinalPriceCalculationStrategy(priceCalculationStrategies);
+                return new FinalPriceCalculationStrategy(new List<IPriceCalculationStrategy>() {
+                    ctx.Kernel.Get<DefaultPriceCalculationStrategy>(),ctx.Kernel.Get<WeekendsAndHolidaysPriceCalculationStrategy>()
+                });
+
             });
 
             kernel.Bind<ILogger>().ToMethod(x =>
             {
-
-
                 return new FileLogger(HttpContext.Current.Server.MapPath("~/App_Data"));
             });
         }        
