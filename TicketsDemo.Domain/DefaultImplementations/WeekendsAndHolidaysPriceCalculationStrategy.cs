@@ -54,10 +54,6 @@ namespace TicketsDemo.Domain.DefaultImplementations
                 };
                 components.Add(WeekendComponent);
             }
-            else
-            {
-                components = null;
-            }
 
             return components;
         }
