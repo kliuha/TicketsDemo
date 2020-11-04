@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +11,7 @@ namespace TicketsDemo.Data.Entities
         public int Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public int PlaceInRunId { get; set; }
-      
+        public int PlaceInRunId { get; set; } 
         public int? TicketId { get; set; }
     }
 }
