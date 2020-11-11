@@ -15,18 +15,18 @@ namespace TicketsDemo.XML
 {
     public class XmlTrainRepository : ITrainRepository
     {
-        private ISettingsService SettingsService;
+        private ISettingsService settingsService;
         public XmlTrainRepository(ISettingsService TrainRep)
         {
 
-            SettingsService = TrainRep;
+            settingsService = TrainRep;
         }
         public List<Train> GetAllTrains()
         {                 
             
             var serializer = new XmlSerializer(typeof(List<Train>));
             List<Train> trains;
-            using (FileStream fs = new FileStream(SettingsService.PlacesXMLPath, FileMode.Open))
+            using (FileStream fs = new FileStream(settingsService.PlacesXMLPath, FileMode.Open))
             {
                 trains = (List<Train>)serializer.Deserialize(fs);
             }
@@ -51,7 +51,7 @@ namespace TicketsDemo.XML
         public void CreateTrain(Train train)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Train));
-            using (FileStream fs = new FileStream(SettingsService.PlacesXMLPath, FileMode.Append))
+            using (FileStream fs = new FileStream(settingsService.PlacesXMLPath, FileMode.Append))
             {
                 serializer.Serialize(fs, train);
             }
@@ -67,7 +67,7 @@ namespace TicketsDemo.XML
         }
         public void DeleteTrain(Train train)
         {
-            XDocument xDoc = XDocument.Load(SettingsService.PlacesXMLPath);
+            XDocument xDoc = XDocument.Load(settingsService.PlacesXMLPath);
             foreach (XElement xelem in xDoc.Root.Elements("Train"))
             {
                 if (xelem.Element("Id").Value == train.Id.ToString())
@@ -75,12 +75,12 @@ namespace TicketsDemo.XML
                     xelem.Remove();
                 }
             }
-            xDoc.Save(SettingsService.PlacesXMLPath);
+            xDoc.Save(settingsService.PlacesXMLPath);
         }
         public void SerializeListOfTrain(List<Train> trains)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Train>));
-            using (FileStream fs = new FileStream(SettingsService.PlacesXMLPath, FileMode.Create))
+            using (FileStream fs = new FileStream(settingsService.PlacesXMLPath, FileMode.Create))
             {
                 serializer.Serialize(fs, trains);
             }
