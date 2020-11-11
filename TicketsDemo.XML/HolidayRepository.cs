@@ -15,18 +15,18 @@ namespace TicketsDemo.XML
 {
     public class HolidayRepository : IHolidayRepository
     {
-        private ISettingsService SettingsService;
+        private ISettingsService settingsService;
         public HolidayRepository(ISettingsService holidayRep)
         {
 
-            SettingsService = holidayRep;
+            settingsService = holidayRep;
         }
         public List<Holiday> GetHolidaysList()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Holiday>));
             List<Holiday> holidays;
 
-            using (FileStream fs = new FileStream(SettingsService.HolidaysXMLPath, FileMode.Open))
+            using (FileStream fs = new FileStream(settingsService.HolidaysXMLPath, FileMode.Open))
             {
                 holidays = (List<Holiday>)serializer.Deserialize(fs);
             }
@@ -36,7 +36,7 @@ namespace TicketsDemo.XML
         public void CreateHoliday(Holiday holiday)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Holiday));
-            using (FileStream fs = new FileStream(SettingsService.HolidaysXMLPath, FileMode.Append))
+            using (FileStream fs = new FileStream(settingsService.HolidaysXMLPath, FileMode.Append))
             {
                 serializer.Serialize(fs, holiday);
             }
