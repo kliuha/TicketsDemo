@@ -14,14 +14,14 @@ namespace TicketsDemo.XML
     {
 
 
-        private ISettingsService SettingsService;
+        private ISettingsService settingsService;
         public XMLWorker(ISettingsService Repository)
         {
-            SettingsService = Repository;
+            settingsService = Repository;
         }
         public void Writer()
         {
-            XDocument xDoc = XDocument.Load(SettingsService.RepXMLPath);
+            XDocument xDoc = XDocument.Load(settingsService.RepXMLPath);
             // создаем новый элемент train
             XElement train1 = new XElement("train");
             // создаем элементы
@@ -43,7 +43,7 @@ namespace TicketsDemo.XML
             //traines.Add(galaxys5);
             // добавляем корневой элемент в документ
             xDoc.Add(traines);
-            xDoc.Save(SettingsService.RepXMLPath);
+            xDoc.Save(settingsService.RepXMLPath);
        
         }
 
